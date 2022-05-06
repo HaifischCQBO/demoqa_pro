@@ -17,7 +17,7 @@ public class BaseClass {
         BrowserConfig browserConfig = new BrowserConfig();
         this.driver = browserConfig.setUpBrowser(new Helpers().getXMLParameter("browser"));
         Helpers helpers = new Helpers(driver);
-        helpers.getURL("https://demoqa.com/");
+        helpers.getURL(helpers.getXMLParameter("url"));
     }
 
     @AfterMethod
