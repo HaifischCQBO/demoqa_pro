@@ -6,71 +6,58 @@ import Objects.Temperature;
 import Objects.Weather;
 import Pages.Page_GoogleSearch;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.ProtocolException;
-import java.net.URL;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Test_WeatherChallenge extends BaseClass {
 
-
     @Test
     @Parameters({"weatherCity", "apiKey"})
-    public void exampleTest(String weatherCity, String apiKey) throws IOException {
+    public void weatherChallenge(String weatherCity, String apiKey) throws Weather.WeatherException, IOException {
 
+        // Initialize the helpers and page objects
         Helpers helpers = new Helpers(driver);
         Page_GoogleSearch page_googleSearch = new Page_GoogleSearch(driver);
+
+        // Search for the weather for the given city on Google search
         WebElement searchInput = page_googleSearch.getSearchInput();
         helpers.sendText(searchInput, "Weather in " + weatherCity);
         helpers.Click(page_googleSearch.getSearchButton());
-        Temperature illapelTemperature =
+
+        // Get the temperature from the Google search results page
+        Temperature cityTemperature =
                 new Temperature(
                         Float.parseFloat(
-                                helpers.waitUntilElementToBeVisible(page_googleSearch.getWeatherTemperature()
-                                ).getText()
-
+                                helpers.waitUntilElementToBeVisible(page_googleSearch.getWeatherTemperature()).getText()
                         )
                 );
 
-        System.out.println(illapelTemperature.getTemperature());
+        // Get the weather for the given city from OpenWeatherMap API
+        Weather cityWeather = new Weather(weatherCity, apiKey);
 
-        Weather illapelWeather = new Weather(apiKey, weatherCity);
+        // Print the city and its temperature
+        System.out.println("City: " + cityWeather.getCity());
+        System.out.println("Temperature: " + cityWeather.getTemperatureCelsius());
 
-        // Print temperature information
-        System.out.println("Temperature: " + illapelWeather.getMain().getTemp());
-        System.out.println("Feels like: " + illapelWeather.getMain().getFeelsLike());
-        System.out.println("Min temperature: " + illapelWeather.getMain().getTempMin());
-        System.out.println("Max temperature: " + illapelWeather.getMain().getTempMax());
+        // Round the temperature to the nearest integer
+        float temperatureCelsius = cityWeather.getTemperatureCelsius();
+        int roundedTemperature = Math.round(temperatureCelsius);
+
+        // Assert that the city returned from Google search matches the expected city
+        Assert.assertEquals(cityWeather.getCity(), weatherCity);
+
+        // Assert that the temperature returned from Google search matches the temperature from OpenWeatherMap API
+        Assert.assertEquals(
+                roundedTemperature,
+                cityTemperature.getTemperature(),
+                1, // Delta for rounding error
+                "The temperature from Google doesn't match the one from OpenWeatherMap"
+        );
     }
 
-   /* public String weatherAPICall(String API_KEY, String weatherCity) {
-        try {
-            String apiUrl = String.format(API_URL, weatherCity, API_KEY);
-            HttpURLConnection connection = (HttpURLConnection) new URL(apiUrl).openConnection();
-            connection.setRequestMethod("GET");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String line;
-            StringBuilder response = new StringBuilder();
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-            reader.close();
-            return response.toString();
-        } catch (ProtocolException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }*/
 }
 
 
