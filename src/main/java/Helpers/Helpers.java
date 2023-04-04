@@ -94,6 +94,33 @@ public class Helpers {
         executor.executeScript("arguments[0].click();", webElement);
     }
 
+    public WebElement waitUntilVisibilityOf(By by) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public WebElement waitUntilVisibilityOf(WebElement webElement) {
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
+    public WebElement waitUntilElementToBeClickable(By by) {
+        return wait.until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public WebElement waitUntilElementToBeClickable(WebElement webElement) {
+        return wait.until(ExpectedConditions.elementToBeClickable(webElement));
+    }
+
+    public WebElement waitUntilPresenceOfElementLocated(By by) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(by));
+    }
+    public WebElement waitUntilElementToBeVisible(By by) {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public WebElement waitUntilElementToBeVisible(WebElement webElement) {
+        return wait.until(ExpectedConditions.visibilityOf(webElement));
+    }
+
     public void sendText(By by, String text) {
         WebElement elemento =  wait.until(ExpectedConditions.elementToBeClickable(by));
         elemento.sendKeys(text);

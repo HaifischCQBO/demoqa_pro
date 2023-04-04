@@ -16,9 +16,16 @@ public class Test_WeatherChallenge extends BaseClass {
         Helpers helpers = new Helpers(driver);
         Page_GoogleSearch page_googleSearch = new Page_GoogleSearch(driver);
         WebElement searchInput =  page_googleSearch.getSearchInput();
-        helpers.sendText(searchInput, "Weather in" + weatherCity);
+        helpers.sendText(searchInput, "Weather in " + weatherCity);
+        helpers.Click(page_googleSearch.getSearchButton());
         Temperature illapelTemperature =
-                new Temperature(Float.parseFloat(page_googleSearch.getWeatherTemperature().getText()));
+                new Temperature(
+                        Float.parseFloat(
+                                helpers.waitUntilElementToBeVisible(page_googleSearch.getWeatherTemperature()
+                                ).getText()
+
+                        )
+                );
         System.out.println(illapelTemperature.getTemperature());
 
     }
