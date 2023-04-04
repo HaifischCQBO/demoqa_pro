@@ -4,11 +4,17 @@
     <test name="Weather Test">
         <parameter name="browser" value="chrome"/>
         <parameter name="headless" value="false"/>
-        <parameter name="url" value="https://google.com/"/>
-        <parameter name="weatherCity" value="Illapel"/>
-
         <packages>
-            <package name="Tests.demoQA_pro.*"/>
+            <package name="Tests.demoGoogle.*"/>
         </packages>
+        <classes>
+            <class name="Tests.demoGoogle.Test_WeatherChallenge">
+                <methods>
+                    <include name="exampleTest"/>
+                </methods>
+                <parameter name="url" value="https://www.google.com/"/>
+                <parameter name="weatherCity" value="Illapel"/>
+            </class>
+        </classes>
     </test>
 </suite>
