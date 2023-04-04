@@ -43,14 +43,14 @@ public class Test_WeatherChallenge extends BaseClass {
 
         Weather illapelWeather = new Weather(apiKey, weatherCity);
 
-// Print temperature information
+        // Print temperature information
         System.out.println("Temperature: " + illapelWeather.getMain().getTemp());
         System.out.println("Feels like: " + illapelWeather.getMain().getFeelsLike());
         System.out.println("Min temperature: " + illapelWeather.getMain().getTempMin());
         System.out.println("Max temperature: " + illapelWeather.getMain().getTempMax());
     }
 
-    public String weatherAPICall(String API_KEY, String weatherCity) {
+   /* public String weatherAPICall(String API_KEY, String weatherCity) {
         try {
             String apiUrl = String.format(API_URL, weatherCity, API_KEY);
             HttpURLConnection connection = (HttpURLConnection) new URL(apiUrl).openConnection();
@@ -70,7 +70,7 @@ public class Test_WeatherChallenge extends BaseClass {
         }
 
         return null;
-    }
+    }*/
 }
 
 

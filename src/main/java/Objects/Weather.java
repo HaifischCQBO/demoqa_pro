@@ -140,21 +140,21 @@ public class Weather {
     private String name;
     private int cod;
 
-    public Weather(String API_KEY, String weatherCity) {
-        Weather weather = weatherAPICall(API_KEY, weatherCity);
-        this.coord = weather.coord;
-        this.weather = weather.weather;
-        this.base = weather.base;
-        this.main = weather.main;
-        this.visibility = weather.visibility;
-        this.wind = weather.wind;
-        this.clouds = weather.clouds;
-        this.dt = weather.dt;
-        this.sys = weather.sys;
-        this.timezone = weather.timezone;
-        this.id = weather.id;
-        this.name = weather.name;
-        this.cod = weather.cod;
+    public Weather(String apiKey, String weatherCity) {
+        Weather weather = weatherAPICall(apiKey, weatherCity);
+        this.coord = weather.getCoord();
+        this.weather = weather.getWeather();
+        this.base = weather.getBase();
+        this.main = weather.getMain();
+        this.visibility = weather.getVisibility();
+        this.wind = weather.getWind();
+        this.clouds = weather.getClouds();
+        this.dt = weather.getDt();
+        this.sys = weather.getSys();
+        this.timezone = weather.getTimezone();
+        this.id = weather.getId();
+        this.name = weather.getName();
+        this.cod = weather.getCod();
     }
 
     public Coord getCoord() {
