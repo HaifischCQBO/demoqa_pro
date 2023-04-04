@@ -15,12 +15,14 @@ import java.net.HttpURLConnection;
 import java.net.ProtocolException;
 import java.net.URL;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public class Test_WeatherChallenge extends BaseClass {
     private static final String API_URL = "https://api.openweathermap.org/data/2.5/onecall?lat=%s&lon=%s&appid=%s";
 
     @Test
     @Parameters({"weatherCity", "apiKey"})
-    public void exampleTest(String weatherCity, String apiKey) {
+    public void exampleTest(String weatherCity, String apiKey) throws IOException {
 
         Helpers helpers = new Helpers(driver);
         Page_GoogleSearch page_googleSearch = new Page_GoogleSearch(driver);
@@ -37,10 +39,13 @@ public class Test_WeatherChallenge extends BaseClass {
                 );
 
         System.out.println(illapelTemperature.getTemperature());
-        weatherAPICall(apiKey);
+
+        String apiResponse = weatherAPICall(apiKey);
+        ObjectMapper objectMapper = new ObjectMapper();
+        Temperature temperature = objectMapper.readValue(apiResponse, Temperature.class);
     }
 
-    public void weatherAPICall(String API_KEY) {
+    public String weatherAPICall(String API_KEY) {
         try {
             // Example location (New York City)
             double lat = -31.63349;
@@ -60,12 +65,15 @@ public class Test_WeatherChallenge extends BaseClass {
 
             // Print the response from the API endpoint
             System.out.println(response.toString());
-
+            return response.toString();
         } catch (ProtocolException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
 
+        return null;
+    }
 }
+
+
