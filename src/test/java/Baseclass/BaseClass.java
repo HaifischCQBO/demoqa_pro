@@ -14,10 +14,10 @@ public class BaseClass {
     public WebDriver driver;
 
     @BeforeMethod
-    @Parameters({"browser", "url"})
-    public void setUp(String browser, String url) {
+    @Parameters({"browser", "url", "headless"})
+    public void setUp(String browser, String url, String headless) {
         BrowserConfig browserConfig = new BrowserConfig();
-        this.driver = browserConfig.setUpBrowser(browser);
+        this.driver = browserConfig.setUpBrowser(browser, headless);
         Helpers helpers = new Helpers(driver);
         helpers.getURL(url);
     }

@@ -16,8 +16,7 @@ public class BrowserConfig {
     Helpers helpers = new Helpers();
 
 
-    public WebDriver setUpBrowser(String browserString){
-        String headless_mode = helpers.getXMLParameter("headless");
+    public WebDriver setUpBrowser(String browserString, String headless_mode){
             if(browserString.equals("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions chromeOptions = new ChromeOptions();
