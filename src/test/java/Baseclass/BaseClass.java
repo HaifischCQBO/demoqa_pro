@@ -8,16 +8,18 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 public class BaseClass {
     public WebDriver driver;
 
     @BeforeMethod
-    public void setUp() {
+    @Parameters({"browser", "url"})
+    public void setUp(String browser, String url) {
         BrowserConfig browserConfig = new BrowserConfig();
-        this.driver = browserConfig.setUpBrowser(new Helpers().getXMLParameter("browser"));
+        this.driver = browserConfig.setUpBrowser(browser);
         Helpers helpers = new Helpers(driver);
-        helpers.getURL(helpers.getXMLParameter("url"));
+        helpers.getURL(url);
     }
 
     @AfterMethod
