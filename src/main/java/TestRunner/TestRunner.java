@@ -1,11 +1,6 @@
 package TestRunner;
 
 import org.testng.TestNG;
-import org.testng.xml.XmlSuite;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

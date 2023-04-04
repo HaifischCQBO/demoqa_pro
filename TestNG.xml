@@ -4,6 +4,7 @@
     <test name="Weather Test">
         <parameter name="browser" value="chrome"/>
         <parameter name="headless" value="false"/>
+        <parameter name="url" value="https://www.google.com/"/>
         <packages>
             <package name="Tests.demoGoogle.*"/>
         </packages>
@@ -12,7 +13,6 @@
                 <methods>
                     <include name="exampleTest"/>
                 </methods>
-                <parameter name="url" value="https://www.google.com/"/>
                 <parameter name="weatherCity" value="Illapel"/>
             </class>
         </classes>

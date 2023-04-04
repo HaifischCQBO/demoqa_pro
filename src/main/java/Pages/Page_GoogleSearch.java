@@ -24,9 +24,6 @@ public class Page_GoogleSearch {
     @FindBy (name = "wob_tm" )
     private WebElement weatherTemperature;
 
-
-
-
     // FUNCTIONS // FUNCTIONS // FUNCTIONS // FUNCTIONS // FUNCTIONS // FUNCTIONS // FUNCTIONS // FUNCTIONS
 
     public WebElement getSearchInput() {

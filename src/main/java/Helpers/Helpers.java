@@ -100,8 +100,8 @@ public class Helpers {
         Print("Se envia texto "+ text +" a Elemento:"+ by);
     }
     public void sendText(WebElement webElement, String text) {
-        WebElement elemento =  wait.until(ExpectedConditions.elementToBeClickable(webElement));
-        elemento.sendKeys(text);
+        wait.until(ExpectedConditions.elementToBeClickable(webElement));
+        webElement.sendKeys(text);
         Print("Se envia texto "+ text +" a Elemento:"+ webElement);
     }
     public boolean compare_text(String origin, String subject){
