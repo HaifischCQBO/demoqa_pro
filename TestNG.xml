@@ -11,7 +11,7 @@
         <classes>
             <class name="Tests.demoGoogle.Test_WeatherChallenge">
                 <methods>
-                    <include name="exampleTest"/>
+                    <include name="weatherChallenge"/>
                 </methods>
                 <parameter name="weatherCity" value="Illapel"/>
                 <parameter name="apiKey" value="7fe2053851c05a5005a4c2ffd788e867"/>
