@@ -6,10 +6,10 @@
         <parameter name="headless" value="false"/>
         <parameter name="url" value="https://www.google.com/"/>
         <packages>
-            <package name="Tests.demoGoogle.*"/>
+            <package name="tests.demoGoogle.*"/>
         </packages>
         <classes>
-            <class name="Tests.demoGoogle.Test_WeatherChallenge">
+            <class name="tests.demoGoogle.Test_WeatherChallenge">
                 <methods>
                     <include name="weatherChallenge"/>
                 </methods>

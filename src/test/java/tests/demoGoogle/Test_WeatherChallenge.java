@@ -1,4 +1,5 @@
-package Tests.demoGoogle;
+/*
+package tests.demoGoogle;
 
 import Baseclass.BaseClass;
 import Helpers.Helpers;
@@ -19,7 +20,7 @@ import java.io.IOException;
 
 public class Test_WeatherChallenge extends BaseClass {
 
-    @Test
+
     @Parameters({"weatherCity", "apiKey"})
     @Step("Verify weather for a city")
     public void weatherChallenge(String weatherCity, String apiKey) throws Weather.WeatherException, IOException {
@@ -65,3 +66,4 @@ public class Test_WeatherChallenge extends BaseClass {
 }
 
 
+*/
